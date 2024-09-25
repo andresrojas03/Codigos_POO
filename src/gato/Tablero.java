@@ -12,6 +12,11 @@ import java.util.*;
  * 
  */
 
+/**
+ *
+ * Clase tablero, donde se maneja la logica del juego y de la maquina
+ *  
+ */
 
 public class Tablero {
     
@@ -26,6 +31,10 @@ public class Tablero {
     
     Scanner scanner = new Scanner(System.in);
     
+    
+    /**
+     * agrega los boletos a la maquina siempre y cuando sea administrador
+     */
     public void agregarBoletos(){
         System.out.println("Inicie sesion para continuar");
         System.out.print("Usuario: ");
@@ -43,6 +52,11 @@ public class Tablero {
         }
     }
     
+    /**
+     * comprueba los boletos que hay en la maquina siempre y cuando sea el 
+     * administrador
+     */
+    
     public void comprobarBoletos(){
         System.out.println("Inicie sesion para continuar");
         System.out.print("Usuario: ");
@@ -56,6 +70,17 @@ public class Tablero {
             System.out.println("Usuario o contrasena incorrectos");
         }
     }
+    
+    
+    /**
+     * funcion que se encarga de llevar el desarrollo del juego
+     * y de entregar los boletos en caso de que no se quiera seguir jugando
+     * 
+     * @param jugador1 instancia del jugador 1
+     * @param jugador2 instancia del jugador 2
+     * @return false si no se quiere seguir jugando, llamada recursiva si se quiere jugar de nuevo
+     * 
+     */
     
     public boolean jugar(Player jugador1, Player jugador2){
         
@@ -131,6 +156,10 @@ public class Tablero {
         
     }
     
+    /**
+     * Genera el tablero de juego, una matriz 3x3
+     */
+    
     
     public void generarTablero(){
         System.out.println("Generando tablero.....");
@@ -141,6 +170,11 @@ public class Tablero {
         }
         System.out.println("Tablero generado");
     }
+    
+    /**
+     * muestra en pantalla el tablero generado con las modificaciones que se le
+     * hagan en cada turno
+     */
     
     public void mostrarTablero(){
         System.out.println("#### Juego " + this.conteoJuegos + " #####");
@@ -155,6 +189,13 @@ public class Tablero {
             if(i < 2) System.out.println("----------");
         }
     }
+    
+    /**
+     * Se encarga de actualizar y colocar el tiro de cada uno de los jugadores
+     * @param turno indica el turno de la persona para saber que simbolo poner
+     * @param coordenadas las coordenadas del tiro del jugador en el tablero
+     * @return true si se realizo una jugada, en caso contrario return false
+     */
     
     public boolean actualizarTablero(int turno, int[] coordenadas){
        int fila = coordenadas[0];
@@ -180,6 +221,12 @@ public class Tablero {
        
     }
     
+    /**
+     * comprueba si hay casillas disponibles para realizar jugadas
+     * @return false si hay casillas disponibles, return true en caso contrario
+     * 
+     */
+    
     public boolean tableroLleno(){
         for(int i = 0; i< 3; i++){
             for(int j = 0;j < 3; j++){
@@ -192,13 +239,22 @@ public class Tablero {
         return true;
     }
     
+    /**
+     * muestra una lista con el ganador de los juegos almacenados en la maquina
+     * desde su ejecucion
+     */
+    
     public void verJuegos(){
         for(String j: this.juegos){
             System.out.println(j);
         }
     }
     
-    
+    /**
+     * Genera quien va primero en la lista de turnos
+     * @param jugador1 instancia del jugador1
+     * @param jugador2 instancia del jugador2
+     */
     
     public void generarOrden(Player jugador1, Player jugador2){
         
@@ -220,9 +276,21 @@ public class Tablero {
         }    
     }
     
+    
+    /**
+     * comprueba si hay una jugada ganadora en el tablero
+     * @return false en caso de que ninguna de las comprobaciones se cumpla
+     * true en caso de que se haya hehco una jugada valida para el juego
+     */
     public boolean terminarJuego(){
         return this.comprobarHorizontal() || this.comprobarVertical() || this.comprobarDiagonal();
     }
+    
+    /**
+     * comprueba las filas del tablero para ver si hay un
+     * tres en raya
+     * @return true si hay tres figuras iguales de manera consecutiva horizontalmente
+     */
     
     public boolean comprobarHorizontal(){
         
@@ -236,6 +304,11 @@ public class Tablero {
     
     }
     
+    /**
+     * comprueba las columnas del tablero para ver si hay tres en raya
+     * @return true si hay tres figuras iguales de manera consecutiva verticalmente
+     */
+    
     public boolean comprobarVertical(){
         
         for(int i = 0; i < 3; i++){
@@ -246,6 +319,11 @@ public class Tablero {
         }
         return false;
     }
+    
+    /**
+     * comprueba las diagonales del tablero para ver si hay tres en raya
+     * @return true si hay tres figuras iguales en forma diagonal
+     */
     
     public boolean comprobarDiagonal(){
         

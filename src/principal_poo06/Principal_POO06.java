@@ -19,6 +19,8 @@ public class Principal_POO06 {
 
     /**
      * @param args the command line arguments
+     * funcion principal para manejar el acceso a la maquina del gato
+     * 
      */
     
     
